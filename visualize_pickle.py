@@ -18,7 +18,21 @@ def inspect(obj, name="root", depth=0, max_depth=2):
     elif hasattr(obj, "shape"):
         print(f"{indent}  shape = {obj.shape}")
 
-with open("experiments/euroc/motion_body_rot/net_output.pickle", "rb") as f:
+with open("AirIMU_EuRoC/net_output.pickle", "rb") as f:
     data = pickle.load(f)
 
 inspect(data)
+seq = data["MH_02_easy"]
+
+print("ts shape:", seq["ts"].shape)
+print("net_vel shape:", seq["net_vel"].shape)
+print("cov shape:", seq["cov"].shape)
+
+print("\nfirst 10 ts:")
+print(seq["ts"][:10])
+
+print("\nfirst 10 net_vel:")
+print(seq["net_vel"][:10])
+
+print("\nfirst 10 cov:")
+print(seq["cov"][:10])
